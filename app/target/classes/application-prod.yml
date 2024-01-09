@@ -1,0 +1,86 @@
+server:
+  port: 8080
+
+spring:
+  cache:
+    type: redis
+  redis:
+    host: redis-forum-api
+    port: 6379
+  datasource:
+    url: jdbc:postgresql://postgres-forum-api:5432/forum
+    username: forum
+    password: Bk55yc1u0eiqga6e
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+forum:
+  jwt:
+    expiration: 86400000
+    secret: rm'!@N=Ke!~p8VTA2ZRK~nMDQX5Uvm!m'D&]{@Vr?G;2?XhbC:Qa#9#eMLN}x3?JR3.2zr~v)gYF^8:8>:XfB:Ww75N/emt9Yj[bQMNCWwWJ?N,nvH.<2.r~w]*e~vgak)X"v8H`MH/7"2E`,^k@n<vE-wD3g9JWPy;CrY*.Kd2_D])=><D?YhBaSua5hW%{2]_FVXzb9`8FH^b[X3jzVER&:jw2<=c38=>L/zBq`}C6tT*cCSVC^c]-L}&/
+
+info:
+  app:
+    description: 'Demo project for Spring Boot'
+    encoding: 'UTF-8'
+    java:
+      version: '17.0.5'
+    name: 'forum'
+    version: '0.0.1-SNAPSHOT'
+
+management:
+  info:
+    env:
+      enabled: true
+    git:
+      enabled: true
+      mode: full
+    build:
+      enabled: true
+    os:
+      enabled: true
+    java:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      base-path: /actuator
+      exposure:
+        include: health,info,metrics,prometheus,env
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+      probes:
+        enabled: true
+        livenessstate:
+          enabled: true
+        readinessstate:
+          enabled: true
+  metrics:
+    enable:
+      jvm: true
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: app-forum-api
+    distribution:
+      sla:
+        http:
+          server:
+            requests: 10ms,20ms,30ms,40ms,50ms,100ms,200ms,300ms,400ms,500ms,1s
+      slo:
+        http:
+          server:
+            requests: 10ms,20ms,30ms,40ms,50ms,100ms,200ms,300ms,400ms,500ms,1s
